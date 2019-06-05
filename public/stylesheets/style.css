@@ -1,0 +1,140 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  outline: none;
+}
+
+body {
+  background: linear-gradient(to bottom, #75adcf, #3c83b8) no-repeat;
+  font-family: 'Arimo', sans-serif;
+  background-size: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  color: #FFF;
+  margin-bottom: 100px;
+}
+
+p {
+  text-align: center;
+  color: #ffffff;
+  font-size: 13px;
+}
+
+a:hover, a:visited, a:hover, a:link {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.register {
+  margin: 0 auto 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.field {
+  width: 385px;
+  height: 70px;
+  position: relative;
+}
+.field input {
+  width: 100%;
+  border-radius: 6px;
+  height: 70px;
+  border: 0;
+  padding: 10px;
+  padding: 20px 125px 0 16px;
+  font-size: 0;
+  background: #134d7e;
+  transition: background .3s ease;
+  color: #ffffff;
+}
+.field input:focus {
+  background: #003154;
+  font-size: 23px;
+}
+.field input:focus::-moz-selection {
+  background: rgba(188, 232, 255, 0.5);
+}
+.field input:focus::selection {
+  background: rgba(188, 232, 255, 0.5);
+}
+.field input.active {
+  background: #003154;
+  font-size: 23px;
+}
+.field input,
+.field button {
+  position: absolute;
+  height: 70px;
+}
+.field button {
+  background: rgba(0, 0, 0, 0.3);
+  right: 0;
+  border: 0;
+  width: 115px;
+  border-radius: 6px;
+  font-size: 22px;
+  cursor: pointer;
+  transition: width .3s ease, background .3s ease, opacity .3s ease;
+  opacity: 0;
+  color: #3c83b8;
+  text-transform: uppercae;
+  pointer-events: none;
+}
+.field button.active {
+  color: #ffffff;
+  background: #af5da4;
+  opacity: 1;
+  pointer-events: auto;
+}
+.field button.active:hover {
+  background: #af5da4;
+}
+.field button.full {
+  width: 100%;
+}
+.field input:focus + label {
+  font-size: 19px;
+  -webkit-transform: translate(16px, 11px);
+          transform: translate(16px, 11px);
+  color: rgba(255, 255, 255, 0.7);
+}
+.field label {
+  position: absolute;
+  color: white;
+  -webkit-transform: translate(16px, 20px);
+          transform: translate(16px, 20px);
+  transition: font-size .3s ease, color .3s .1s ease, -webkit-transform .3s ease;
+  transition: transform .3s ease, font-size .3s ease, color .3s .1s ease;
+  transition: transform .3s ease, font-size .3s ease, color .3s .1s ease, -webkit-transform .3s ease;
+  font-size: 28px;
+}
+.field label.active {
+  font-size: 19px;
+  -webkit-transform: translate(16px, 11px);
+          transform: translate(16px, 11px);
+  color: rgba(255, 255, 255, 0.7);
+}
+.field input:focus + label + button {
+  opacity: 1;
+}
+
