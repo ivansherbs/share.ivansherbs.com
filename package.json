@@ -7,10 +7,12 @@
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
+    "config": "3.0.1",
     "debug": "~2.6.9",
     "express": "~4.16.1",
     "hbs": "~4.0.4",
     "http-errors": "~1.6.3",
+    "mailchimp-api-v3": "1.12.1",
     "mongodb": "~3.2.6",
     "morgan": "~1.9.1"
   }
