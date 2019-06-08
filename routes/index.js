@@ -6,8 +6,9 @@ var router = express.Router();
 
 const tokens = require('../lib/tokens');
 const shop = require('../lib/shop');
+const subscribers = require('../lib/subscribers');
 
-const SHOP_URL = config.get('shops.share.shopUrlBase');
+const SHOP_URL = config.get('shops.give.shopUrlBase');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -69,6 +70,14 @@ router.post('/', function(req, res, next) {
             }
 
             res.send({ code: 'OK', url: productUrl });
+
+            // try our best to subscribe this user
+            subscribers.add(email, { code: req.body.token }, err => {
+                // TODO ignore for now the errors but we have to manually search them in the logs
+                if (err) {
+                    debug('Error while trying to subscribe email: %s', email);
+                }
+            });
         });
     });
 });
