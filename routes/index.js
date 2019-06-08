@@ -49,6 +49,8 @@ router.post('/', function(req, res, next) {
         return;
     }
 
+    var email = req.body.email;
+
     if (!req.body.token) {
         res.send({ code: 'OK', url: URL_EVENTS });
 
@@ -62,7 +64,6 @@ router.post('/', function(req, res, next) {
         return;
     }
 
-    var email = req.body.email;
     var productId = shop.generateUniqueProductId(email);
     debug('Generated product ID for the share shop: %s', productId);
     var productUrl = URL_SHOP + productId;
