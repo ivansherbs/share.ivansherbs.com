@@ -8,7 +8,8 @@ const tokens = require('../lib/tokens');
 const shop = require('../lib/shop');
 const subscribers = require('../lib/subscribers');
 
-const SHOP_URL = config.get('shops.give.shopUrlBase');
+const URL_SHOP = config.get('shops.give.shopUrlBase');
+const URL_EVENTS = config.get('links.events');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -26,7 +27,7 @@ router.get('/', function(req, res, next) {
             }
             if (doc.email) {
                 debug('Redirecting associated code (%s) to shop: %s', doc.token, doc.shopUrl);
-                res.redirect(doc.shopUrl || SHOP_URL);
+                res.redirect(doc.shopUrl || URL_SHOP);
                 return;
             }
             debug('Capturing email for non-associated code: %s', doc.token);
@@ -43,15 +44,28 @@ router.get('/', function(req, res, next) {
 /* POST email */
 router.post('/', function(req, res, next) {
 
-    if (!req.body || !req.body.email || !req.body.token) {
+    if (!req.body || !req.body.email) {
         res.send({ code: 'INVALID_REQUEST' });
+        return;
+    }
+
+    if (!req.body.token) {
+        res.send({ code: 'OK', url: URL_EVENTS });
+
+        // try our best to subscribe this user
+        subscribers.add(email, 'mailchimp.lists.honeypot', {}, err => {
+            // TODO ignore for now the errors but we have to manually search them in the logs
+            if (err) {
+                debug('Error while trying to subscribe honeypot email: %s', email);
+            }
+        });
         return;
     }
 
     var email = req.body.email;
     var productId = shop.generateUniqueProductId(email);
     debug('Generated product ID for the share shop: %s', productId);
-    var productUrl = SHOP_URL + productId;
+    var productUrl = URL_SHOP + productId;
 
     var data = { email: email, shopUrl: productUrl };
 
@@ -72,10 +86,10 @@ router.post('/', function(req, res, next) {
             res.send({ code: 'OK', url: productUrl });
 
             // try our best to subscribe this user
-            subscribers.add(email, { code: req.body.token }, err => {
+            subscribers.add(email, 'mailchimp.lists.giver', { code: req.body.token }, err => {
                 // TODO ignore for now the errors but we have to manually search them in the logs
                 if (err) {
-                    debug('Error while trying to subscribe email: %s', email);
+                    debug('Error while trying to subscribe giver email: %s', email);
                 }
             });
         });
