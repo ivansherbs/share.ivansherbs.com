@@ -1,3 +1,13 @@
+@font-face {
+    font-family: Monad;
+    src: url("/fonts/Monad.otf") format("opentype");
+}
+
+@font-face {
+    font-family: Papyrus;
+    src: url("/fonts/Papyrus-Regular.ttf")  format('truetype')
+}
+
 html,
 body {
   margin: 0;
@@ -28,15 +38,21 @@ body {
   align-items: center;
 }
 
+body {
+    background-image: url(/images/sharing.jpg);
+    background-size: cover;
+    background-position: 75%;
+    padding: 50px;
+}
+
 h1 {
   color: #FFF;
-  margin-bottom: 100px;
 }
 
 p {
   text-align: center;
   color: #ffffff;
-  font-size: 13px;
+  font-size: 23px;
 }
 
 a:hover, a:visited, a:hover, a:link {
@@ -138,3 +154,102 @@ a:hover, a:visited, a:hover, a:link {
   opacity: 1;
 }
 
+
+.logo {
+    white-space: nowrap;
+    text-align: center;
+    user-select: none;
+    color: #FFF;
+}
+
+.logo .logo-image {
+    display: inline-block;
+    width: 13rem;
+    height: 13rem;
+    background: url("/images/white_339.png");
+    background-size: cover;
+    margin-bottom: 1rem;
+}
+
+.logo.logo-black .logo-image {
+    background-image: url("/images/black_490.png");
+}
+.logo.logo-black .logo-name {
+    color: #000;
+}
+.logo.logo-black .logo-motto {
+    color: #000;
+}
+
+.logo .logo-name {
+    display: block;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+.logo .logo-motto {
+    display: block;
+    font-size: 1.3rem;
+}
+
+.logo.logo-sm .logo-image {
+    width: 6.5rem;
+    height: 6.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.logo.logo-sm .logo-name {
+    font-size: 1.1rem;
+    letter-spacing: 0.4rem;
+    margin-bottom: 1rem;
+}
+
+.logo.logo-sm .logo-motto {
+    font-size: 0.7rem;
+}
+
+@media (max-width: 450px), (max-height: 450px) {
+	.logo .logo-image {
+		width: 100px;
+		height: 100px;
+	}
+
+	.logo .logo-name {
+        font-size: 1.5rem;
+        /*TODO*/
+	}
+
+    .logo .logo-motto {
+        font-size: 1rem;
+        /*TODO*/
+	}
+
+    .logo.logo-sm .logo-image {
+        width: 64px;
+        height: 64px;
+    }
+}
+
+.f-monad {
+    font-family: Monad;
+}
+
+.f-papyrus {
+    font-family: Papyrus;
+}
+
+.f-wide {
+    letter-spacing: 0.8rem;
+}
+
+.nowrap {
+    white-space: nowrap;
+}
+
+.noselect {
+    user-select: none;
+}
+
+.mb-s { margin-bottom: 20px }
+.mb-m { margin-bottom: 40px }
+.mb-l { margin-bottom: 80px }
